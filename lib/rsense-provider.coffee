@@ -7,25 +7,27 @@ class RsenseProvider extends Provider
 
   init: (@client) ->
     aeditor = atom.workspace.getActiveEditor()
-    aeditor.getBuffer().on "contents-modified", (e) =>
-      @fetchCompletions()
 
   wordRegex: /[^\.:]*$/g
-  @completions = []
+
   buildSuggestions: ->
     selection = @editor?.getSelection()
     prefix = @prefixOfSelection selection
-    for x in [1..20000000]
-      x
+    if prefix == ""
+      compls = @fetchCompletions()
+    else
+      compls = @completions
 
-    suggestions = @findSuggestionsForPrefix prefix
+    suggestions = @findSuggestionsForPrefix prefix, compls
     return unless suggestions?.length
     return suggestions
 
   fetchCompletions: () ->
-    @client.$check_completion View, (err, res) =>
+    [send_json, ajax_hash] = @client.$check_completion(View)
+    View.ajax(ajax_hash).done (res) =>
+
       if res?.completions?.length
-        @completions = res?.completions?.map (c) =>
+        return @completions = res?.completions?.map (c) =>
           c
 
   find_completion: (completions, word) ->
@@ -33,7 +35,7 @@ class RsenseProvider extends Provider
       if c.name is word
         return c
 
-  findSuggestionsForPrefix: (prefix) ->
+  findSuggestionsForPrefix: (prefix, completions) ->
     # Filter the words using fuzzaldrin
     if @completions?.length
       names = @completions.map (c) =>

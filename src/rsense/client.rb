@@ -11,7 +11,7 @@ module Rsense
       @rsense_port = @settings.rsense.port
     end
 
-    def completions(editor, row, col, cb)
+    def completions(editor, row, col)
       @editor = editor
       @candidates = []
       @text = @editor.getText
@@ -26,7 +26,7 @@ module Rsense
             column: #{col + 1}
           }
         })`
-        `window.rview = #{send_json}`
+
         ajaxhash = {
           url: "http://localhost:#{@rsense_port}",
           type: 'POST',
@@ -34,22 +34,17 @@ module Rsense
           dataType: 'json',
           data: send_json,
           }
-        `window.ajaxhash = #{ajaxhash.to_n}`
-        `#{@view}.ajax(#{ajaxhash.to_n}).done(function(data) { cb(data) }).fail(function(err) { })`
-
+        [send_json, ajaxhash.to_n]
     end
 
-    def check_completion(view, cb)
+    def check_completion(view)
       @view = Native(view)
       @editor = @atom.workspace.getActiveEditor()
       cursor = Native(@editor.getCursor())
       row = Native(cursor.getBufferRow)
       col = Native(cursor.getBufferColumn)
 
-      completions @editor, row, col, -> suggestions {
-        cb.call( `null`, suggestions)
-      }
-
+      completions(@editor, row, col)
     end
 
   end
