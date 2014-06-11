@@ -13,6 +13,7 @@ class RsenseProvider extends Provider
   buildSuggestions: ->
     selection = @editor?.getSelection()
     prefix = @prefixOfSelection selection
+
     if prefix == ""
       compls = @fetchCompletions()
     else

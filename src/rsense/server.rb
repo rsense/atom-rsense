@@ -32,7 +32,7 @@ module Rsense
       }
       myexit = -> code {
         `console.log("Rsense Started on port " + #{@rsense_port})`
-        `console.log(#{code})` unless code == 0
+        #`console.log(#{code})` unless code == 0
       }
       @process.chdir(@project_path)
       buffer = Atom::BufProcess.new(command, args, stdout, myexit)
