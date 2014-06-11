@@ -16,24 +16,26 @@ module Rsense
       @candidates = []
       @text = @editor.getText
       @project_path = @atom.project.getPath()
-      send_json = `JSON.stringify(#{{
-          "command": "code_completion",
-          "project": @project_path,
-          "file": @editor.getPath,
-          "code": @text,
-          "location": {
-            "row": row,
-            "column": col
+      send_json = `JSON.stringify({
+          command: "code_completion",
+          project: #{@project_path},
+          file: #{@editor.getPath},
+          code: #{@text},
+          location: {
+            row: #{row + 1},
+            column: #{col + 1}
           }
-        }})`
-        @view.ajax({
-          url: 'http://localhost:#{@port}',
+        })`
+        `window.rview = #{send_json}`
+        ajaxhash = {
+          url: "http://localhost:#{@rsense_port}",
           type: 'POST',
           contentType: 'application/json; charset=utf-8',
           dataType: 'json',
           data: send_json,
-          success: cb
-          })
+          }
+        `window.ajaxhash = #{ajaxhash.to_n}`
+        `#{@view}.ajax(#{ajaxhash.to_n}).done(function(data) { cb(data) }).fail(function(err) { catch })`
 
     end
 
@@ -42,24 +44,12 @@ module Rsense
       @editor = @atom.workspace.getActiveEditor()
       cursor = Native(@editor.getCursor())
       row = Native(cursor.getBufferRow)
-      tbuffer = Native(@editor.getBuffer)
       col = Native(cursor.getBufferColumn)
 
-      last_char = tbuffer.getTextInRange([[row, col -2], [row, col]])
-
       completions @editor, row, col, -> suggestions {
-        completions = suggestions["completions"].keys
-
-        cb.call( `null`, completions.to_n)
+        cb.call( `null`, suggestions)
       }
 
-    end
-
-    def parse_single(line)
-      matches = line.match(/^MATCH (\w*)\,/)
-      if matches && matches.respond_to?(:captures)
-        matches.captures.first
-      end
     end
 
   end

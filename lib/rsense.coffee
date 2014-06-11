@@ -7,7 +7,7 @@ source = fs.readFileSync(sourceFile).toString()
 
 vm = require 'vm'
 vm.runInThisContext(source)
-RacerProvider = require("./rsense-provider")
+RsenseProvider = require("./rsense-provider")
 require('./js/rsense.js')
 
 _ = require "underscore-plus"
@@ -26,8 +26,8 @@ module.exports =
    * Registers a SnippetProvider for each editor view
   ###
   activate: ->
-    @server = Opal.Rsense.Server
-    @server.start_server()
+    @server = Opal.Rsense.Server.$new()
+    @server.$start_server()
     @rsense = Opal.Rsense.Rsense.$new()
     atom.packages.activatePackage("autocomplete-plus")
       .then (pkg) =>

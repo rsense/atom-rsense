@@ -2,6 +2,7 @@ require 'native'
 require "./buf_process"
 require "./file"
 require "./config"
+require "./process"
 
 module Atom
   class Atom

@@ -10,33 +10,40 @@ class RsenseProvider extends Provider
     aeditor.getBuffer().on "contents-modified", (e) =>
       @fetchCompletions()
 
-  wordRegex: /(\b\w*[a-zA-z1-9:.]\w*\b|[a-zA-z1-9:.])/g
+  wordRegex: /[^\.:]*$/g
+  @completions = []
   buildSuggestions: ->
     selection = @editor?.getSelection()
     prefix = @prefixOfSelection selection
-    return unless prefix.length
+    for x in [1..20000000]
+      x
 
     suggestions = @findSuggestionsForPrefix prefix
     return unless suggestions?.length
     return suggestions
 
   fetchCompletions: () ->
-    @completions = []
     @client.$check_completion View, (err, res) =>
-      @completions = res
+      if res?.completions?.length
+        @completions = res?.completions?.map (c) =>
+          c
+
+  find_completion: (completions, word) ->
+    for c in completions
+      if c.name is word
+        return c
 
   findSuggestionsForPrefix: (prefix) ->
-    # Get rid of the leading @
-    #prefix = prefix.replace /^::/, ''
-
     # Filter the words using fuzzaldrin
     if @completions?.length
+      names = @completions.map (c) =>
+        c.name
 
-      words = fuzzaldrin.filter @completions, prefix
-      @completions = []
+      words = fuzzaldrin.filter names, prefix
 
       # Builds suggestions for the words
       suggestions = for word in words when word isnt prefix
-        new Suggestion this, word: word, prefix: prefix, label: "@#{word}"
+        completion = @find_completion(@completions, word)
+        new Suggestion this, word: word, prefix: prefix, label: "#{completion.qualified_name} #{completion.kind}"
 
       return suggestions
