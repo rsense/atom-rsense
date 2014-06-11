@@ -35,7 +35,7 @@ module Rsense
           data: send_json,
           }
         `window.ajaxhash = #{ajaxhash.to_n}`
-        `#{@view}.ajax(#{ajaxhash.to_n}).done(function(data) { cb(data) }).fail(function(err) { catch })`
+        `#{@view}.ajax(#{ajaxhash.to_n}).done(function(data) { cb(data) }).fail(function(err) { })`
 
     end
 
