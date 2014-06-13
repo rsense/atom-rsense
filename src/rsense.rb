@@ -2,6 +2,7 @@ require "native"
 require "atom/atom"
 require "rsense/client"
 require "rsense/server"
+require "rsense/utils"
 
 module Rsense
   class Rsense

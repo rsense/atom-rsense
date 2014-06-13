@@ -1,4 +1,5 @@
 require "atom/file"
+require "rsense/utils"
 
 module Rsense
   class Client
@@ -40,11 +41,17 @@ module Rsense
     def check_completion(view)
       @view = Native(view)
       @editor = @atom.workspace.getActiveEditor()
+      return unless Rsense::Utils.check_scope(@editor)
       cursor = Native(@editor.getCursor())
       row = Native(cursor.getBufferRow)
       col = Native(cursor.getBufferColumn)
 
       completions(@editor, row, col)
+    end
+
+    def cleanup(arr)
+      n_arr = Native(arr)
+      n_arr.uniq
     end
 
   end

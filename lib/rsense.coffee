@@ -41,7 +41,7 @@ module.exports =
     @editorSubscription = atom.workspaceView.eachEditorView (editorView) =>
       if editorView.attached and not editorView.mini
         editorView.editor.on "grammar-changed", =>
-          if editorView.editor.getGrammar().name.match(/Ruby/)
+          if editorView.editor.getGrammar().scopeName.match(/source.ruby/)
             provider = new RsenseProvider editorView
 
             @autocomplete.registerProviderForEditorView provider, editorView

@@ -25,11 +25,14 @@ class RsenseProvider extends Provider
 
   fetchCompletions: () ->
     [send_json, ajax_hash] = @client.$check_completion(View)
+    return unless send_json and ajax_hash
     View.ajax(ajax_hash).done (res) =>
 
       if res?.completions?.length
         return @completions = res?.completions?.map (c) =>
           c
+      else
+        return @completions = []
 
   find_completion: (completions, word) ->
     for c in completions
@@ -41,6 +44,8 @@ class RsenseProvider extends Provider
     if @completions?.length
       names = @completions.map (c) =>
         c.name
+
+      names = @client.$cleanup(names)
 
       words = fuzzaldrin.filter names, prefix
 
