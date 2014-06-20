@@ -29,3 +29,7 @@ Or install it yourself as:
     $ gem install rsense
 
 Then install this package via Atom's package manager. Just search for `rsense`.
+
+## Usage
+
+You'll need to run `rsense start` from the command line, though we do eventually plan to add an atom command for starting and stopping the server.
