@@ -13,3 +13,19 @@ RSense is currently in beta and ready for testing.  Currently we have exposed co
 [![Stories in Ready](https://badge.waffle.io/rsense/rsense.png?label=ready&title=Ready)](https://waffle.io/rsense/rsense)
 
 ![A screenshot of your spankin' package](./rsense.gif?raw=true)
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+    gem 'rsense'
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install rsense
+
+Then install this package via Atom's package manager. Just search for `rsense`.
