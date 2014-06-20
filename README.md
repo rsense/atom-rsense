@@ -6,6 +6,8 @@
 
 [![Gitter chat](https://badges.gitter.im/rsense/rsense.png)](https://gitter.im/rsense/rsense)
 
+**The RSense server currently starts up slowly. Give it some time after initially triggering completion. It gets fast after this.**
+
 RSense is a tool for doing static analysis of Ruby source code. Rsense is used in conjunction with an editor plugin. This is the plugin for the Atom editor.
 
 RSense is currently in beta and ready for testing.  Currently we have exposed code-completion.  In the near future we'll also be ready to expose some of Rsense's other basic features like `find-definition`. After that, there's plenty to do in the long term.  See the waffle link below to find out where you can pitch in. It would be awesome if you helped get things done.
