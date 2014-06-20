@@ -15,6 +15,7 @@ class RsenseProvider extends Provider
     prefix = @prefixOfSelection selection
 
     if prefix == ""
+      @completions = []
       compls = @fetchCompletions()
     else
       compls = @completions

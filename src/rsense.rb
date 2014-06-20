@@ -8,7 +8,7 @@ module Rsense
   class Rsense
     include Native
 
-    attr_accessor :atom, :editor_subscription, :providers, :autocomplete, :rsense_client, :providers
+    attr_accessor :atom, :editor_subscription, :providers, :autocomplete, :rsense_client
 
     def initialize
       @atom = Atom::Atom.new

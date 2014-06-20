@@ -27,7 +27,7 @@ module.exports =
   ###
   activate: ->
     @server = Opal.Rsense.Server.$new()
-    @server.$start_server()
+    #@server.$start_server()
     @rsense = Opal.Rsense.Rsense.$new()
     atom.packages.activatePackage("autocomplete-plus")
       .then (pkg) =>
@@ -40,14 +40,12 @@ module.exports =
   registerProviders: ->
     @editorSubscription = atom.workspaceView.eachEditorView (editorView) =>
       if editorView.attached and not editorView.mini
-        editorView.editor.on "grammar-changed", =>
-          if editorView.editor.getGrammar().scopeName.match(/source.ruby/)
-            provider = new RsenseProvider editorView
+        provider = new RsenseProvider editorView
 
-            @autocomplete.registerProviderForEditorView provider, editorView
+        @autocomplete.registerProviderForEditorView provider, editorView
 
-            @providers.push provider
-            @rsense.$add_provider(provider)
+        @providers.push provider
+        @rsense.$add_provider(provider)
 
   ###
    * Cleans everything up, unregisters all SnippetProvider instances
