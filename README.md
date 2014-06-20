@@ -12,7 +12,7 @@ RSense is currently in beta and ready for testing.  Currently we have exposed co
 
 [![Stories in Ready](https://badge.waffle.io/rsense/rsense.png?label=ready&title=Ready)](https://waffle.io/rsense/rsense)
 
-![A screenshot of your spankin' package](./rsense.gif?raw=true)
+![A screenshot of your spankin' package](https://cloud.githubusercontent.com/assets/1395968/3344028/5b3c2f0a-f8a6-11e3-8952-c0f7155cb19e.gif)
 
 ## Installation
 
