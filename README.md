@@ -30,8 +30,8 @@ Or install it yourself as:
 
     $ gem install rsense
 
-Then install this package via Atom's package manager. Just search for `rsense`.
+Then install this package via Atom's package manager. Just search for `rsense`. You will also need to install [`autocomplete-plus`](https://atom.io/packages/autocomplete-plus).  Sometimes it is necessary to restart atom after installing these two packages.
 
 ## Usage
 
-You'll need to run `rsense start` from the command line, though we do eventually plan to add an atom command for starting and stopping the server.
+You'll need to run `rsense start` from the command line, though we do eventually plan to add an atom command for starting and stopping the server.  Completions are triggered on `.` and `::`.
