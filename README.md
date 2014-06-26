@@ -1,12 +1,10 @@
-![rsense](https://cloud.githubusercontent.com/assets/1395968/2978144/51565ee2-dbb5-11e3-9b94-e97a37739d03.png)
+[![rsense](https://cloud.githubusercontent.com/assets/1395968/2978144/51565ee2-dbb5-11e3-9b94-e97a37739d03.png)](http://rsense.github.io/)
 
 # rsense package
 
-### Rsense Can See All
+### [Rsense Can See All](http://rsense.github.io/)
 
 [![Gitter chat](https://badges.gitter.im/rsense/rsense.png)](https://gitter.im/rsense/rsense)
-
-**The RSense server currently starts up slowly. Give it some time after initially triggering completion. It gets fast after this.**
 
 RSense is a tool for doing static analysis of Ruby source code. Rsense is used in conjunction with an editor plugin. This is the plugin for the Atom editor.
 
@@ -30,8 +28,18 @@ Or install it yourself as:
 
     $ gem install rsense
 
-Then install this package via Atom's package manager. Just search for `rsense`. You will also need to install [`autocomplete-plus`](https://atom.io/packages/autocomplete-plus).  Sometimes it is necessary to restart atom after installing these two packages.
+Then install this package via Atom's package manager, within preferences. Just search for `rsense`. You will also need to install [`autocomplete-plus`](https://atom.io/packages/autocomplete-plus).
+
+These can also be installed at the command line via atom's package manager:
+
+```
+    $ apm install rsense
+    $ apm install autocomplete-plus
+```
+
+ Sometimes it is necessary to restart atom after installing these two packages.
 
 ## Usage
 
-You'll need to run `rsense start` from the command line, though we do eventually plan to add an atom command for starting and stopping the server.  Completions are triggered on `.` and `::`.
+You'll need to run `rsense start` from the command line, though we do eventually plan to add an atom command for starting and stopping the server.
+Completions are triggered on `.` and `::`. More information about rsense can be found at http://rsense.github.io/ .
