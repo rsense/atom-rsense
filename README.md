@@ -42,4 +42,12 @@ These can also be installed at the command line via atom's package manager:
 ## Usage
 
 You'll need to run `rsense start` from the command line, though we do eventually plan to add an atom command for starting and stopping the server.
-Completions are triggered on `.` and `::`. More information about rsense can be found at http://rsense.github.io/ .
+Completions are triggered on `.` and `::`. You won't see the popup until typing a letter, however. For instance:
+
+```ruby
+x = "hello"
+x.s
+```
+The above will trigger a list of completions, using fuzzy filtering on 's'.
+
+More information about rsense can be found at http://rsense.github.io/ .
