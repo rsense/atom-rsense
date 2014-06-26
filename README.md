@@ -48,6 +48,6 @@ Completions are triggered on `.` and `::`. You won't see the popup until typing 
 x = "hello"
 x.s
 ```
-The above will trigger a list of completions, using fuzzy filtering on 's'.
+The above will trigger a list of completions, using fuzzy filtering on 's'. Navigate the dropbox with the up ▲ and down ▼ arrows, then select completion with the tab ⇥ key.
 
 More information about rsense can be found at http://rsense.github.io/ .
