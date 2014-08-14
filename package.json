@@ -1,7 +1,7 @@
 {
   "name": "rsense",
   "main": "./lib/rsense",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "Intelligent ruby code completion",
   "repository": "git://github.com/rsense/atom-rsense",
   "license": "MIT",
